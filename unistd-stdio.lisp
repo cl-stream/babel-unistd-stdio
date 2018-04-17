@@ -18,27 +18,26 @@
 
 (in-package :unistd-stdio)
 
-(defvar *stdin* nil)
-(defvar *stdout* nil)
-(defvar *stderr* nil)
-
 (defun stdin ()
-  (or *stdin*
-      (setf *stdin*
-            (babel-input-stream
-             (unistd-input-stream
-              unistd:+stdin-fileno+)))))
+  (unless (and (boundp '*stdin*)
+               (stream-open-p *stdin*))
+    (setf *stdin* (babel-input-stream
+                   (unistd-input-stream
+                    unistd:+stdin-fileno+))))
+  *stdin*)
 
 (defun stdout ()
-  (or *stdout*
-      (setf *stdout*
-            (babel-output-stream
-             (unistd-output-stream
-              unistd:+stdout-fileno+)))))
+  (unless (and (boundp '*stdout*)
+               (stream-open-p *stdout*))
+    (setf *stdout* (babel-output-stream
+                    (unistd-output-stream
+                     unistd:+stdout-fileno+))))
+  *stdout*)
 
 (defun stderr ()
-  (or *stderr*
-      (setf *stderr*
-            (babel-output-stream
-             (unistd-output-stream
-              unistd:+stderr-fileno+)))))
+  (unless (and (boundp '*stderr*)
+               (stream-open-p *stderr*))
+    (setf *stderr* (babel-output-stream
+                    (unistd-output-stream
+                     unistd:+stderr-fileno+))))
+  *stderr*)

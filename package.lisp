@@ -21,13 +21,8 @@
 (defpackage :unistd-stdio
   (:nicknames :stdio)
   (:use
+   :cl-stream
    :babel-stream
    :common-lisp
    :unistd-stream)
-  (:export
-   #:*stderr*
-   #:stderr
-   #:*stdin*
-   #:stdin
-   #:*stdout*
-   #:stdout))
+  #.(cl-stream:shadowing-import-from))
