@@ -22,7 +22,6 @@
   (:nicknames :stdio)
   (:use
    :cl-stream
-   :babel-stream
    :common-lisp
    :unistd-stream)
   #.(cl-stream:shadowing-import-from))

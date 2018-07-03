@@ -18,13 +18,12 @@
 
 (in-package :unistd-stdio)
 
-(eval-when (:load-toplevel :execute)
-  (setf *stdin* (babel-input-stream
-                 (unistd-input-stream
-                  unistd:+stdin-fileno+))
-        *stdout* (babel-output-stream
-                  (unistd-output-stream
-                   unistd:+stdout-fileno+))
-        *stderr* (babel-output-stream
-                  (unistd-output-stream
-                   unistd:+stderr-fileno+))))
+(defun unistd-stdio ()
+  (setf *stdin* (unistd-input-stream
+                 unistd:+stdin-fileno+)
+        *stdout* (unistd-output-stream
+                  unistd:+stdout-fileno+)
+        *stderr* (unistd-output-stream
+                  unistd:+stderr-fileno+)))
+
+(unistd-stdio)
