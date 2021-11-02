@@ -1,7 +1,7 @@
 ;;
-;;  unistd-stdio  -  Standard I/O classes using cffi-unistd.
+;;  babel-unistd-stdio  -  Standard I/O classes for cl-stream using unistd and babel.
 ;;
-;;  Copyright 2018 Thomas de Grivel <thoxdg@gmail.com>
+;;  Copyright 2018,2021 Thomas de Grivel <thoxdg@gmail.com>
 ;;
 ;;  Permission to use, copy, modify, and distribute this software for any
 ;;  purpose with or without fee is hereby granted, provided that the above
@@ -16,14 +16,17 @@
 ;;  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ;;
 
-(in-package :unistd-stdio)
+(in-package :babel-unistd-stdio)
 
-(defun unistd-stdio ()
-  (setf *stdin* (unistd-input-stream
-                 unistd:+stdin-fileno+)
-        *stdout* (unistd-output-stream
-                  unistd:+stdout-fileno+)
-        *stderr* (unistd-output-stream
-                  unistd:+stderr-fileno+)))
+(defun babel-unistd-stdio ()
+  (setf *stdin* (babel-input-stream
+                 (unistd-input-stream
+                  unistd:+stdin-fileno+))
+        *stdout* (babel-output-stream
+                  (unistd-output-stream
+                   unistd:+stdout-fileno+))
+        *stderr* (babel-output-stream
+                  (unistd-output-stream
+                  unistd:+stderr-fileno+))))
 
-(unistd-stdio)
+(babel-unistd-stdio)

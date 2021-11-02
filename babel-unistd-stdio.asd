@@ -1,7 +1,7 @@
 ;;
-;;  unistd-stdio  -  Standard I/O classes using cffi-unistd.
+;;  babel-unistd-stdio  -  cl-stream standard I/O using babel and unistd.
 ;;
-;;  Copyright 2018 Thomas de Grivel <thoxdg@gmail.com>
+;;  Copyright 2018,2021 Thomas de Grivel <thoxdg@gmail.com>
 ;;
 ;;  Permission to use, copy, modify, and distribute this software for any
 ;;  purpose with or without fee is hereby granted, provided that the above
@@ -18,17 +18,17 @@
 
 (in-package :common-lisp-user)
 
-(defpackage :unistd-stdio.system
+(defpackage :babel-unistd-stdio.system
   (:use :common-lisp :asdf))
 
-(in-package :unistd-stdio.system)
+(in-package :babel-unistd-stdio.system)
 
-(defsystem :unistd-stdio
-  :name "unistd-stdio"
+(defsystem :babel-unistd-stdio
+  :name "babel-unistd-stdio"
   :author "Thomas de Grivel <thoxdg@gmail.com>"
   :version "0.1"
-  :description "Standard I/O classes using cffi-unistd."
+  :description "cl-stream standard I/O using babel and unistd."
   :depends-on ("babel-stream" "unistd-stream")
   :components
   ((:file "package")
-   (:file "unistd-stdio" :depends-on ("package"))))
+   (:file "babel-unistd-stdio" :depends-on ("package"))))

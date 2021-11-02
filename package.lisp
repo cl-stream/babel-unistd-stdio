@@ -18,9 +18,10 @@
 
 (in-package :common-lisp)
 
-(defpackage :unistd-stdio
+(defpackage :babel-unistd-stdio
   (:nicknames :stdio)
   (:use
+   :babel-stream
    :cl-stream
    :common-lisp
    :unistd-stream)
